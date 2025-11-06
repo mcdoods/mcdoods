@@ -1,0 +1,39 @@
+name: Update Year Progress
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   
+  workflow_dispatch:       
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Calculate year progress
+        id: progress
+        run: |
+          today=$(date +%j)
+          year=$(date +%Y)
+          days_in_year=$(date -d "12/31/$year" +%j)
+          percent=$(awk "BEGIN {printf \"%.2f\", ($today/$days_in_year)*100}")
+
+          bars=$(printf "%.0f" "$(awk "BEGIN {print ($percent/4)}")")
+          bar_str=$(printf '█%.0s' $(seq 1 $bars))
+          unfilled=$((25 - bars))
+          space_str=$(printf '▁%.0s' $(seq 1 $unfilled))
+          echo "bar={ $bar_str$space_str } $percent% as on ⏰ $(date '+%d-%b-%Y')" >> $GITHUB_OUTPUT
+
+      - name: Update README
+        run: |
+          sed -i '/<!--START_SECTION:yearprogress-->/, /<!--END_SECTION:yearprogress-->/c\<!--START_SECTION:yearprogress-->\n⏳ **Year Progress:** '${{ steps.progress.outputs.bar }}'\n<!--END_SECTION:yearprogress-->' README.md
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update year progress"
+          git push
