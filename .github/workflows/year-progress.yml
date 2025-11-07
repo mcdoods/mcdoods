@@ -2,38 +2,57 @@ name: Update Year Progress
 
 on:
   schedule:
-    - cron: "0 0 * * *"   
-  workflow_dispatch:       
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Calculate year progress
-        id: progress
-        run: |
-          today=$(date +%j)
-          year=$(date +%Y)
-          days_in_year=$(date -d "12/31/$year" +%j)
-          percent=$(awk "BEGIN {printf \"%.2f\", ($today/$days_in_year)*100}")
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-          bars=$(printf "%.0f" "$(awk "BEGIN {print ($percent/4)}")")
-          bar_str=$(printf '█%.0s' $(seq 1 $bars))
-          unfilled=$((25 - bars))
-          space_str=$(printf '▁%.0s' $(seq 1 $unfilled))
-          echo "bar={ $bar_str$space_str } $percent% as on ⏰ $(date '+%d-%b-%Y')" >> $GITHUB_OUTPUT
-
-      - name: Update README
+      - name: Update Year Progress
         run: |
-          sed -i '/<!--START_SECTION:yearprogress-->/, /<!--END_SECTION:yearprogress-->/c\<!--START_SECTION:yearprogress-->\n⏳ **Year Progress:** '${{ steps.progress.outputs.bar }}'\n<!--END_SECTION:yearprogress-->' README.md
+          python3 - << 'EOF'
+          import datetime, math, re
+          from pathlib import Path
+
+          readme = Path("README.md")
+          text = readme.read_text(encoding="utf-8")
+
+          today = datetime.datetime.utcnow().date()
+          year = today.year
+          start = datetime.date(year, 1, 1)
+          end = datetime.date(year + 1, 1, 1)
+          progress = (today - start).days / (end - start).days
+          filled = math.floor(progress * 30)
+          bar = "█" * filled + "▁" * (30 - filled)
+          percent = round(progress * 100, 2)
+          date_str = today.strftime("%-d-%b-%Y")
+
+          new_line = f"<p align=\"center\"><sub>\n⏳ Year Progress: {{ {bar} }} {percent}% as on ⏰ {date_str}\n</sub></p>"
+
+          text = re.sub(
+              r"<p align=\"center\"><sub>\n⏳ Year Progress:.*?</sub></p>",
+              new_line,
+              text,
+              flags=re.DOTALL
+          )
+
+          readme.write_text(text, encoding="utf-8")
+          EOF
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "Update year progress"
+          git commit -m "update year progress" || echo "no changes"
           git push
