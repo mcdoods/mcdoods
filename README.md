@@ -8,12 +8,12 @@
 |-----------|--------------|------|
 | [![Languages](https://skillicons.dev/icons?i=python,cs,java,lua,markdown)](https://skillicons.dev) | [![IDEs & Tools](https://skillicons.dev/icons?i=vscode,visualstudio,pycharm,idea,replit,robloxstudio,git,github,figma)](https://skillicons.dev) | [![Misc](https://skillicons.dev/icons?i=windows,linux,mint,mysql,notion,bots)](https://skillicons.dev) |
 
-### 🔧 Currently
+### 🎯 Currently
 - Working on small automation & AI projects with Python
 - Running Linux Mint Xcfe
 - Learning about APIs
 
-### ⚙️ Open Projects
+### 💻 Open Projects
 - CLI Weather app from API
 - Automatic video generator from various AI sources
 - Heart Disease Predictor (group project)
