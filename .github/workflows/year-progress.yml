@@ -61,4 +61,5 @@ jobs:
           git add README.md
           git diff --quiet && echo "No changes" && exit 0
           git commit -m "update year progress"
-          git push origin main
+          git push origin main --force
+
