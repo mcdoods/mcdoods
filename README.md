@@ -27,7 +27,7 @@
 
 
 <p align="center"><sub>
-⏳ Year Progress: { ██████████████████████████▁▁▁▁ } 89.86% as on ⏰ 25-Nov-2025
+⏳ Year Progress: { ███████████████████████████▁▁▁ } 90.14% as on ⏰ 26-Nov-2025
 </sub></p>
 <!--START_SECTION:yearprogress-->
 <!--END_SECTION:yearprogress-->
