@@ -6,7 +6,7 @@
 I'm a student. I do programming here and there but I often forget about using git.
 
 <p align="center"><sub>
-⏳ Year Progress: { ████████████████████████████▁▁ } 94.79% as on ⏰ 13-Dec-2025
+⏳ Year Progress: { ████████████████████████████▁▁ } 95.07% as on ⏰ 14-Dec-2025
 </sub></p>
 <!--START_SECTION:yearprogress-->
 <!--END_SECTION:yearprogress-->
