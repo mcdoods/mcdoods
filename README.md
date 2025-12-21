@@ -1,9 +1,12 @@
+Languages:
 
-| Languages | IDEs & Tools | Misc |
-|-----------|--------------|------|
-| [![Languages](https://skillicons.dev/icons?i=python,cs,java,lua,markdown)](https://skillicons.dev) | [![IDEs & Tools](https://skillicons.dev/icons?i=vscode,visualstudio,pycharm,idea,replit,robloxstudio,git,github,figma)](https://skillicons.dev) | [![Misc](https://skillicons.dev/icons?i=windows,linux,mint,mysql,notion,bots)](https://skillicons.dev) |
+[![Languages](https://skillicons.dev/icons?i=python,cs,java,)](https://skillicons.dev)
 
-I'm a student. I do programming here and there but I often forget about using git.
+IDEs:
+
+[![IDEs & Tools](https://skillicons.dev/icons?i=vscode,visualstudio,pycharm,idea)](https://skillicons.dev)
+
+I'm a student & I program cool stuff
 
 <p align="center"><sub>
 ⏳ Year Progress: { █████████████████████████████▁ } 96.71% as on ⏰ 20-Dec-2025
