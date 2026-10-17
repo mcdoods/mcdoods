@@ -9,7 +9,7 @@ IDEs:
 I'm a student & I program cool stuff
 
 <p align="center"><sub>
-⏳ Year Progress: { ███████████████████████▁▁▁▁▁▁▁ } 78.9% as on ⏰ 16-Oct-2026
+⏳ Year Progress: { ███████████████████████▁▁▁▁▁▁▁ } 79.18% as on ⏰ 17-Oct-2026
 </sub></p>
 <!--START_SECTION:yearprogress-->
 <!--END_SECTION:yearprogress-->
